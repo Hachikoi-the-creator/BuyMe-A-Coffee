@@ -1,7 +1,7 @@
-import abi from '../utils/BuyMeACoffee.json';
+import abi from "../utils/BuyMeACoffee.json";
 import { ethers } from "ethers";
-import Head from 'next/head';
-import Image from 'next/image';
+import Head from "next/head";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 // Contract Address & ABI
@@ -11,11 +11,7 @@ const contractABI = abi.abi;
 const createContractInstance = () => {
   const provider = new ethers.providers.Web3Provider(ethereum, "any");
   const signer = provider.getSigner();
-  const buyMeCoffee = new ethers.Contract(
-    contractAddress,
-    contractABI,
-    signer
-  );
+  const buyMeCoffee = new ethers.Contract(contractAddress, contractABI, signer);
   return buyMeCoffee;
 };
 
@@ -39,7 +35,7 @@ export default function Home() {
     try {
       const { ethereum } = window;
 
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       console.log("accounts: ", accounts);
 
       if (accounts.length > 0) {
@@ -62,7 +58,7 @@ export default function Home() {
       }
 
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts'
+        method: "eth_requestAccounts",
       });
 
       setCurrentAccount(accounts[0]);
@@ -114,7 +110,6 @@ export default function Home() {
       } else {
         console.log("Metamask is not connected");
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -128,7 +123,7 @@ export default function Home() {
         const buyMeCoffee = createContractInstance();
         console.log("Making the owner of the contract rich...");
         await buyMeCoffee.withdrawTips();
-        console.log('Done :D');
+        console.log("Done :D");
       } else {
         console.log("Metamask is not connected");
       }
@@ -152,8 +147,8 @@ export default function Home() {
           address: from,
           timestamp: new Date(timestamp * 1000),
           message,
-          name
-        }
+          name,
+        },
       ]);
     };
 
@@ -163,11 +158,7 @@ export default function Home() {
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum, "any");
       const signer = provider.getSigner();
-      buyMeCoffee = new ethers.Contract(
-        contractAddress,
-        contractABI,
-        signer
-      );
+      buyMeCoffee = new ethers.Contract(contractAddress, contractABI, signer);
 
       buyMeCoffee.on("NewMemo", onNewMemo);
     }
@@ -187,16 +178,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='container flex-column'>
-        <main className='main flex-column'>
-          <h1 className='title'>
-            Buy Hachi a Tea! 🍵
-          </h1>
+      <div className="container flex-column">
+        <main className="main flex-column">
+          <h1 className="title">Buy Hachi a Tea! 🍵</h1>
           {currentAccount ? (
-            <form className='form flex-column'>
-              <label>
-                Name
-              </label>
+            <form className="form flex-column">
+              <label>Name</label>
 
               <input
                 id="name"
@@ -204,9 +191,7 @@ export default function Home() {
                 placeholder="Enter your nickname"
                 onChange={onNameChange}
               />
-              <label>
-                Send Hachi a message~
-              </label>
+              <label>Send Hachi a message~</label>
 
               <textarea
                 rows={3}
@@ -214,10 +199,9 @@ export default function Home() {
                 id="message"
                 onChange={onMessageChange}
                 required
-              >
-              </textarea>
+              ></textarea>
               <button
-                className='buy-btn animation-bg btn'
+                className="buy-btn animation-bg btn"
                 type="button"
                 onClick={buyCoffee}
               >
@@ -225,22 +209,32 @@ export default function Home() {
               </button>
             </form>
           ) : (
-            <button className='btn connect-btn animation-bg' onClick={connectWallet}> Connect your wallet </button>
+            <button
+              className="btn connect-btn animation-bg"
+              onClick={connectWallet}
+            >
+              {" "}
+              Connect your wallet{" "}
+            </button>
           )}
         </main>
 
-        {currentAccount && (<h1>Memos received</h1>)}
+        {currentAccount && <h1>Memos received</h1>}
 
-        {currentAccount && (memos.map((memo, idx) => {
-          return (
-            <div className='memo' key={idx} >
-              <p className='memo--msg'>"{memo.message}"</p>
-              <p className='memo--name'> From: {memo.name} at {memo.timestamp.toString()}</p>
-            </div>
-          );
-        }))}
+        {currentAccount &&
+          memos.map((memo, idx) => {
+            return (
+              <div className="memo" key={idx}>
+                <p className="memo--msg">"{memo.message}"</p>
+                <p className="memo--name">
+                  {" "}
+                  From: {memo.name} at {memo.timestamp.toString()}
+                </p>
+              </div>
+            );
+          })}
 
-        <footer className='footer'>
+        <footer className="footer">
           <a
             href="https://alchemy.com/?a=roadtoweb3weektwo"
             target="_blank"
@@ -248,7 +242,9 @@ export default function Home() {
           >
             Created by @8koi2 for Alchemy's Road to Web3 lesson two!
           </a>
-          <button className='btn' onClick={sendAllTips}>Send tips</button>
+          <button className="btn" onClick={sendAllTips}>
+            Send tips
+          </button>
         </footer>
       </div>
     </>
