@@ -1,0 +1,119 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* bg-animation utility */
+.animation-bg {
+  border: 1px solid black;
+  font-size: 30px;
+  background: linear-gradient(-45deg, #65fcb1, #53ffa0, #75aaff);
+  background-size: 200% 200%;
+
+  -webkit-animation: Animation 1s ease infinite;
+  -moz-animation: Animation 1s ease infinite;
+  animation: Animation 1s ease infinite;
+}
+
+@-webkit-keyframes Animation {
+  0% {
+    background-position: 58% 0%;
+  }
+  50% {
+    background-position: 43% 100%;
+  }
+  100% {
+    background-position: 58% 0%;
+  }
+}
+@-moz-keyframes Animation {
+  0% {
+    background-position: 58% 0%;
+  }
+  50% {
+    background-position: 43% 100%;
+  }
+  100% {
+    background-position: 58% 0%;
+  }
+}
+@keyframes Animation {
+  0% {
+    background-position: 58% 0%;
+  }
+  50% {
+    background-position: 43% 100%;
+  }
+  100% {
+    background-position: 58% 0%;
+  }
+}
+
+.main,
+.container {
+  background-color: #75aaff;
+  display: flex;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.main button {
+  padding: 7px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+/*  */
+/* every memo style */
+/*  */
+.memo {
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.memo--msg {
+  font-weight: 700;
+}
+
+.memo--name {
+  font-style: italic;
+}
+
+/* FORM */
+.form {
+  background-color: #5361ff91;
+  border-radius: 7px;
+}
+
+.form label {
+  margin: 13px 0 7px 0;
+}
+
+.form * {
+  font-family: inherit;
+}
+
+.form textarea {
+  resize: none;
+}
+
+/* buy me a coffe btn */
+.buy-btn {
+  margin: 23px;
+}
+
+/* connect wallte btn */
+.connect-btn {
+}
